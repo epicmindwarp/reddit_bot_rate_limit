@@ -40,6 +40,7 @@ bots = {    0: [bot1_username, bot1_password, bot1_clientid, bot1_clientsecret, 
 
 # Time to sleep between runs
 sleep_seconds = 60
+date_format = '%Y/%m/%d %H:%M:%S'
 
 try:
 
@@ -50,7 +51,7 @@ try:
         
         for u in range(0, len(bots)):
         
-            time_now = datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')
+            time_now = datetime.datetime.now().strftime(date_format)
         
             # Login each minute, as the rate limit count doesn't seem to refresh otherwise
             print(f'\nLogging in as {bots[u][0]}...')
@@ -73,7 +74,7 @@ try:
             print(f'Used: \t\t {used}')
             print(f'Remaining: \t {remaining}')
             if reset_time:
-                reset_time = datetime.datetime.fromtimestamp(reset_time).strftime('%d/%m/%Y %H:%M:%S')
+                reset_time = datetime.datetime.fromtimestamp(reset_time).strftime(date_format)
                 print(f'Reset: \t\t {reset_time}')
 
             logging.warning(f',{time_now},{bots[u][0]},{reset_time},{used},{remaining}')
