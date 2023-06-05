@@ -1,12 +1,12 @@
 import logging
-logging.basicConfig(filename='epicredditbotratelimit.csv', filemode='a')
+logging.basicConfig(filename='epic_reddit_bot_rate_limit.csv', filemode='a')
 
+import praw
 import time
 import datetime
-import praw as r
 
 #######################################
-redditor_name = 'enter your name here'
+redditor_name = 'enter your reddit username here'
 
 # Enter bot details here
 bot1_username       = ''
@@ -17,9 +17,9 @@ bot1_useragent      = f'{bot1_username} - {redditor_name} Bot Rate Limit Count v
 
 # If you don't have multiple bots, you can remove the next three lines
 bot2_username       = ''
+bot2_password       = ''
 bot2_clientid       = ''
 bot2_clientsecret   = ''
-bot2_password       = ''
 bot2_useragent      = f'{bot2_username} - {redditor_name} Bot Rate Limit Count v0.1'
 #######################################
 
@@ -54,7 +54,7 @@ try:
         
             # Login each minute, as the rate limit count doesn't seem to refresh otherwise
             print(f'\nLogging in as {bots[u][0]}...')
-            r = r.Reddit(username       = bots[u][0],
+            r = praw.Reddit(username       = bots[u][0],
                         password        = bots[u][1],
                         client_id       = bots[u][2],
                         client_secret   = bots[u][3],
