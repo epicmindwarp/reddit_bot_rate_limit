@@ -42,13 +42,14 @@ bots = {    0: [bot1_username, bot1_password, bot1_clientid, bot1_clientsecret, 
 sleep_seconds = 60
 date_format = '%Y/%m/%d %H:%M:%S'
 
-try:
+# Always add line break at the top, even in new files, to make it easier to recognise restarts
+logging.warning('')
 
-    # Always add line break at the top, even in new files, to make it easier to recognise restarts
-    logging.warning('')
+while True:
 
-    while True:
-        
+    try:
+
+
         for u in range(0, len(bots)):
         
             time_now = datetime.datetime.now().strftime(date_format)
@@ -86,10 +87,10 @@ try:
             time.sleep(1)
         print(' '*30)
 
-except Exception as e:
+    except Exception as e:
 
-    current_time = datetime.datetime.now().strftime("%H:%M:%S")
-    print(f'\n\t### ({current_time}) Error (sleeping {sleep_seconds} sec)- {e}', end='\n')
+        current_time = datetime.datetime.now().strftime("%H:%M:%S")
+        print(f'\n\t### ({current_time}) Error (sleeping {sleep_seconds} sec)- {e}', end='\n')
 
-    for x in range(0, sleep_seconds):
-        time.sleep(1)
+        for x in range(0, sleep_seconds):
+            time.sleep(1)
